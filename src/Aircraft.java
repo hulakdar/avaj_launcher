@@ -10,5 +10,7 @@ public class Aircraft {
     }
     private long nextId() {
 
+
+		return id;
     }
 }
