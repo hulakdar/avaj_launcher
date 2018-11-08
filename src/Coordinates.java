@@ -5,6 +5,11 @@ public class Coordinates {
     private int latitude;
     private int height;
 
+    private int hash(int h) {
+        h ^= (h >>> 20) ^ (h >>> 12);
+        return h ^ (h >>> 7) ^ (h >>> 4);
+    }
+
     public Coordinates(int longitude, int latitude, int height) {
         this.longitude = longitude;
         this.latitude = latitude;
@@ -18,5 +23,9 @@ public class Coordinates {
     }
     public int getHeight() {
         return height;
+    }
+    public int hashCode()
+    {
+        return hash(longitude) + hash(latitude) + hash(height);
     }
 }

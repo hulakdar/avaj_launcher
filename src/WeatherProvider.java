@@ -1,16 +1,16 @@
-import java.util.ArrayList;
 
 public class WeatherProvider {
     private static WeatherProvider weatherProvider = new WeatherProvider();
-    private static ArrayList<String> weather;
+    private static String weather[] = { "RAIN", "FOG", "SUN", "SNOW" };
 
     private WeatherProvider() {}
-    public static WeatherProvider getProvider()
-    {
-		return weatherProvider;
+
+    public static WeatherProvider getProvider() {
+        return weatherProvider;
     }
-    public String getCurrentWeather(Coordinates coordinates)
-    {
-    	return "not implemented";
+
+    public String getCurrentWeather(Coordinates coordinates) {
+        int hash = coordinates.hashCode();
+        return weather[hash & 3];
     }
 }
