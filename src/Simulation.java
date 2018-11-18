@@ -10,11 +10,6 @@ public class Simulation
 	}
 	public static void main(String args[])
 	{
-		String input = "29";
-		Scanner s = new Scanner(input);
-		s.findInLine("(\\d+)");
-		MatchResult result = s.match();
-
 		if (args.length < 2)
 		{
 			usage();
@@ -30,8 +25,6 @@ public class Simulation
 			e.printStackTrace();
 			return;
 		}
-
-		info.getFrameCount();
 
 		System.out.println(info.getFrameCount());
 		System.out.println("end");
