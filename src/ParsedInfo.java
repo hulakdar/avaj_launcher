@@ -14,9 +14,9 @@ public class ParsedInfo
     }
 
     private long frameCount;
-    private ArrayList<Aircraft> aircrafts;
+    private ArrayList<Flyable> aircrafts = new ArrayList<>();
 
-    public ArrayList<Aircraft> getAircrafts() {
+    public ArrayList<Flyable> getAircrafts() {
         return aircrafts;
     }
 
@@ -33,6 +33,9 @@ public class ParsedInfo
             s.findInLine("(\\d+)");
             MatchResult result = s.match();
             this.frameCount = Integer.parseInt(result.group(1));
+            s.close();
+            if (this.frameCount <= 0)
+                throw new ParsingErrorException("Frame count is invalid.");
         }
 
         while ((line = reader.readLine()) != null) {
@@ -47,12 +50,25 @@ public class ParsedInfo
                     s.close();
                     throw new ParsingErrorException("Too much stuff in one line");
                 }
-                entries[i] = s.next();
+                entries[i++] = s.next();
             }
             if (i < 5)
             {
-                    s.close();
-                    throw new ParsingErrorException("Too little stuff in one line");
+                s.close();
+                System.out.println("Line: " + line);
+                throw new ParsingErrorException("Too little stuff in one line");
+            }
+
+            s.close();
+            int longitude = Integer.parseInt(entries[2]);
+            int latitude = Integer.parseInt(entries[3]);
+            int height = Integer.parseInt(entries[4]);
+            try {
+                aircrafts.add(AircraftFactory.newAircraft(entries[0], entries[1], longitude, latitude, height));
+            } catch (Exception e) {
+                System.err.format("Exception occurred trying to create new '%s' named '%s'\n", entries[0], entries[1]);
+                e.printStackTrace();
+                return;
             }
         }
         reader.close();

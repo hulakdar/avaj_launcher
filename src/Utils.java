@@ -4,6 +4,4 @@ class Utils
         h ^= (h >>> 20) ^ (h >>> 12);
         return h ^ (h >>> 7) ^ (h >>> 4);
     }
-
-    //static public void Log(Flyable);
 }

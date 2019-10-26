@@ -6,18 +6,19 @@ import java.io.File;
 
 public class Simulation
 {
+	private static WeatherTower tower = new WeatherTower();
 	private static void usage()
 	{
-
+		System.out.println("One and only argument should be file with simulation data.");
 	}
 	public static void main(String args[])
 	{
-		if (args.length < 2)
+		if (args.length < 1)
 		{
 			usage();
 			return;
 		}
-		String filename = args[1];
+		String filename = args[0];
 		System.out.println("start");
 		ParsedInfo info;
 		try {
@@ -27,8 +28,12 @@ public class Simulation
 			e.printStackTrace();
 			return;
 		}
-
-		System.out.println(info.getFrameCount());
+		long frameCount = info.getFrameCount();
+		for (long i = 0; i < frameCount; i++)
+		{
+			tower.conditionsChanged();
+			WeatherProvider.getProvider().step();;
+		}
 		System.out.println("end");
 	}
 }
