@@ -1,3 +1,4 @@
+package org.avaj.simulation;
 
 public class Aircraft {
     protected long id;

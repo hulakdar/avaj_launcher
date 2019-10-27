@@ -1,3 +1,5 @@
+package org.avaj.simulation;
+
 class Utils
 {
     static public int hash(int h) {

@@ -1,4 +1,4 @@
-//package org.avaj.simulation;
+package org.avaj.simulation;
 
 import java.util.Scanner;
 import java.util.regex.MatchResult;
@@ -19,21 +19,22 @@ public class Simulation
 			return;
 		}
 		String filename = args[0];
-		System.out.println("start");
 		ParsedInfo info;
 		try {
 			info = new ParsedInfo(filename);
         } catch (Exception e) {
-            System.err.format("Exception occurred trying to read '%s'.", filename);
+			System.err.format("Exception occurred trying to read '%s'.\n", filename);
 			e.printStackTrace();
+			System.err.println(e.getMessage());
 			return;
 		}
 		long frameCount = info.getFrameCount();
+		for (Flyable flyable : info.getAircrafts())
+			flyable.registerTower(tower);
 		for (long i = 0; i < frameCount; i++)
 		{
 			tower.conditionsChanged();
 			WeatherProvider.getProvider().step();;
 		}
-		System.out.println("end");
 	}
 }

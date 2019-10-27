@@ -1,3 +1,4 @@
+package org.avaj.simulation;
 
 public class Baloon extends Aircraft implements Flyable {
     private WeatherTower weatherTower;
@@ -10,23 +11,23 @@ public class Baloon extends Aircraft implements Flyable {
         String weather = weatherTower.getWeather(coordinates);
         if (weather.equals("SUN")) // ◦ SUN - Longitude increases with 2, Height increases with 4
         {
-            System.out.println(toString() + "Sunny.");
+            System.out.println(toString() + ": Sunny.");
             coordinates.addLongitude(2);
             coordinates.addHeight(4);
         }
         else if (weather.equals("RAIN"))// ◦ RAIN - Height decreases with 5
         {
-            System.out.println(toString() + "Rainy, kinda.");
+            System.out.println(toString() + ": Rainy, kinda.");
             coordinates.addLatitude(-5);
         }
         else if (weather.equals("FOG"))// ◦ FOG - Height decreases with 3
         {
-            System.out.println(toString() + "Foggy.");
+            System.out.println(toString() + ": Foggy.");
             coordinates.addLatitude(-3);
         }
         else if (weather.equals("SNOW"))// ◦ SNOW - Height decreases with 15
         {
-            System.out.println(toString() + "Snowy.");
+            System.out.println(toString() + ": Snowy.");
             coordinates.addHeight(-15);
         }
     }

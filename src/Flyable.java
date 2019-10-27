@@ -1,3 +1,4 @@
+package org.avaj.simulation;
 
 public interface Flyable {
     public void updateConditions();

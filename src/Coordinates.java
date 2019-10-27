@@ -1,4 +1,4 @@
-
+package org.avaj.simulation;
 
 public class Coordinates {
     private int longitude;
