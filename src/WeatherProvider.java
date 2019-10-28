@@ -12,7 +12,7 @@ public class WeatherProvider {
     }
 
     public void step() {
-        steps++;
+        steps += Math.abs(Math.round(Math.random() * 10));
     }
 
     public String getCurrentWeather(Coordinates coordinates) {

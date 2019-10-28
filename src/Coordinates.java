@@ -9,7 +9,11 @@ public class Coordinates {
     public int getHeight() { return height; }
     public void addLongitude(int offset) { longitude += offset; }
     public void addLatitude(int offset) { latitude += offset; }
-    public void addHeight(int offset) { height += offset; }
+    public void addHeight(int offset) {
+        height += offset;
+        if (height > 100)
+            height = 100;
+    }
 
     public Coordinates(int longitude, int latitude, int height) {
         this.longitude = longitude;

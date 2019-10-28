@@ -57,8 +57,7 @@ public class ParsedInfo
             if (i < 5)
             {
                 s.close();
-                System.out.println("Line: " + line);
-                throw new ParsingErrorException("Too little stuff in one line");
+                throw new ParsingErrorException("Too little stuff in one line: " + line);
             }
 
             s.close();

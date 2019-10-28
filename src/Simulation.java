@@ -2,6 +2,9 @@ package avaj;
 
 import java.util.Scanner;
 import java.util.regex.MatchResult;
+
+import avaj.Logger;
+
 import java.io.File;
 
 public class Simulation
@@ -9,10 +12,15 @@ public class Simulation
 	private static WeatherTower tower = new WeatherTower();
 	private static void usage()
 	{
-		System.out.println("One and only argument should be file with simulation data.");
+		System.err.println("One and only argument should be file with simulation data.");
 	}
 	public static void main(String args[])
 	{
+		if (!Logger.get().valid())
+		{
+			System.err.println("Couldn't open file simulation.txt for writing");
+			return;
+		}
 		if (args.length < 1)
 		{
 			usage();
@@ -23,8 +31,7 @@ public class Simulation
 		try {
 			info = new ParsedInfo(filename);
         } catch (Exception e) {
-			System.err.format("Exception occurred trying to read '%s'.\n", filename);
-			System.err.println(e.getMessage());
+			System.err.println("Exception occurred trying to read file.\n" + e.getMessage());
 			return;
 		}
 		long frameCount = info.getFrameCount();
@@ -35,5 +42,7 @@ public class Simulation
 			tower.conditionsChanged();
 			WeatherProvider.getProvider().step();;
 		}
+		Logger logger = Logger.get();
+		logger.flushAndClose();
 	}
 }

@@ -13,8 +13,8 @@ public class Aircraft {
     }
 
     private long nextId() { return idCounter++; }
-
     public long getId() { return id; }
     public String getName() { return name; }
     public String toString() { return name + "(" + Long.toString(id) + ")"; };
+    public boolean checkHeight() { return coordinates.getHeight() > 0; };
 }
