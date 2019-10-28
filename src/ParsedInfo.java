@@ -1,4 +1,4 @@
-package org.avaj.simulation;
+package avaj;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -26,7 +26,7 @@ public class ParsedInfo
         return frameCount;
     }
 
-    ParsedInfo(String filename) throws FileNotFoundException, IOException, ParsingErrorException {
+    ParsedInfo(String filename) throws FileNotFoundException, IOException, ParsingErrorException, NumberFormatException {
         ArrayList<String> records = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         String line = reader.readLine();
@@ -69,7 +69,7 @@ public class ParsedInfo
                 aircrafts.add(AircraftFactory.newAircraft(entries[0], entries[1], longitude, latitude, height));
             } catch (Exception e) {
                 System.err.format("Exception occurred trying to create new '%s' named '%s'\n", entries[0], entries[1]);
-                e.printStackTrace();
+                System.err.println(e.getMessage());
                 return;
             }
         }

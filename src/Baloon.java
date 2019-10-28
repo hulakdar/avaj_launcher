@@ -1,4 +1,4 @@
-package org.avaj.simulation;
+package avaj;
 
 public class Baloon extends Aircraft implements Flyable {
     private WeatherTower weatherTower;

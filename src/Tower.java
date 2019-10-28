@@ -1,4 +1,4 @@
-package org.avaj.simulation;
+package avaj;
 
 import java.util.ArrayList;
 

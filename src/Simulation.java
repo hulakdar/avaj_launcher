@@ -1,4 +1,4 @@
-package org.avaj.simulation;
+package avaj;
 
 import java.util.Scanner;
 import java.util.regex.MatchResult;
@@ -24,7 +24,6 @@ public class Simulation
 			info = new ParsedInfo(filename);
         } catch (Exception e) {
 			System.err.format("Exception occurred trying to read '%s'.\n", filename);
-			e.printStackTrace();
 			System.err.println(e.getMessage());
 			return;
 		}

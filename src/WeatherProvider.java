@@ -1,4 +1,4 @@
-package org.avaj.simulation;
+package avaj;
 
 public class WeatherProvider {
     private static WeatherProvider weatherProvider = new WeatherProvider();
