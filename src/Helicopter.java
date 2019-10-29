@@ -9,27 +9,26 @@ public class Helicopter extends Aircraft implements Flyable {
 
     public void updateConditions()
     {
-        Logger logger = Logger.get();
         String weather = weatherTower.getWeather(coordinates);
         if (weather.equals("SUN")) // ◦ SUN - Longitude increases with 10, Height increases with 2
         {
-            logger.log(toString() + ": Sun is shining, weather is sweet.");
+            Logger.log(toString() + ": Sun is shining, weather is sweet.");
             coordinates.addLatitude(10);
             coordinates.addHeight(2);
         }
         else if (weather.equals("RAIN"))// ◦ RAIN - Longitude increases with 5
         {
-            logger.log(toString() + ": Heavy rain.");
+            Logger.log(toString() + ": Heavy rain.");
             coordinates.addLatitude(5);
         }
         else if (weather.equals("FOG"))// ◦ FOG - Longitude increases with 1
         {
-            logger.log(toString() + ": It's like Silent Hill in here.");
+            Logger.log(toString() + ": It's like Silent Hill in here.");
             coordinates.addLatitude(1);
         }
         else if (weather.equals("SNOW"))// ◦ SNOW - Height decreases with 12
         {
-            logger.log(toString() + ": Let it snow, let it snow, let it snow.");
+            Logger.log(toString() + ": Let it snow, let it snow, let it snow.");
             coordinates.addHeight(-12);
         }
     }

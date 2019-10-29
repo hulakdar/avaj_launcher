@@ -9,7 +9,7 @@ import java.util.regex.*;
 
 public class ParsedInfo
 {
-    private class ParsingErrorException extends Exception {
+    public class ParsingErrorException extends Exception {
         ParsingErrorException(String message) {
             super(message);
         }

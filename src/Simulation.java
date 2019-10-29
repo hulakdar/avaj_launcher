@@ -16,11 +16,6 @@ public class Simulation
 	}
 	public static void main(String args[])
 	{
-		if (!Logger.get().valid())
-		{
-			System.err.println("Couldn't open file simulation.txt for writing");
-			return;
-		}
 		if (args.length < 1)
 		{
 			usage();
@@ -30,11 +25,21 @@ public class Simulation
 		ParsedInfo info;
 		try {
 			info = new ParsedInfo(filename);
+        } catch (ParsedInfo.ParsingErrorException e) {
+			System.err.println("File is invalid.");
+			System.err.println(e.getMessage());
+			return;
         } catch (Exception e) {
-			System.err.println("Exception occurred trying to read file.\n" + e.getMessage());
+			System.err.println("Exception occurred trying to read file " + filename);
 			return;
 		}
 		long frameCount = info.getFrameCount();
+		Logger.open("simulation.txt");
+		if (!Logger.valid())
+		{
+			System.err.println("Couldn't open file simulation.txt for writing");
+			return;
+		}
 		for (Flyable flyable : info.getAircrafts())
 			flyable.registerTower(tower);
 		for (long i = 0; i < frameCount; i++)
@@ -42,7 +47,6 @@ public class Simulation
 			tower.conditionsChanged();
 			WeatherProvider.getProvider().step();;
 		}
-		Logger logger = Logger.get();
-		logger.flushAndClose();
+		Logger.flushAndClose();
 	}
 }

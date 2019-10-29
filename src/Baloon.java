@@ -7,27 +7,26 @@ public class Baloon extends Aircraft implements Flyable {
         super(name, coordinates);
     }
     public void updateConditions() {
-        Logger logger = Logger.get();
         String weather = weatherTower.getWeather(coordinates);
         if (weather.equals("SUN")) // ◦ SUN - Longitude increases with 2, Height increases with 4
         {
-            logger.log(toString() + ": Sunny.");
+            Logger.log(toString() + ": Sunny.");
             coordinates.addLongitude(2);
             coordinates.addHeight(4);
         }
         else if (weather.equals("RAIN"))// ◦ RAIN - Height decreases with 5
         {
-            logger.log(toString() + ": Rainy, kinda.");
+            Logger.log(toString() + ": Rainy, kinda.");
             coordinates.addLatitude(-5);
         }
         else if (weather.equals("FOG"))// ◦ FOG - Height decreases with 3
         {
-            logger.log(toString() + ": Foggy.");
+            Logger.log(toString() + ": Foggy.");
             coordinates.addLatitude(-3);
         }
         else if (weather.equals("SNOW"))// ◦ SNOW - Height decreases with 15
         {
-            logger.log(toString() + ": Snowy.");
+            Logger.log(toString() + ": Snowy.");
             coordinates.addHeight(-15);
         }
     }

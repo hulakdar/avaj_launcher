@@ -3,7 +3,7 @@ package avaj;
 public class WeatherProvider {
     private static WeatherProvider weatherProvider = new WeatherProvider();
     private static String weather[] = { "RAIN", "FOG", "SUN", "SNOW" };
-    private int steps = 0;
+    private int steps = Math.abs(Math.round((float)Math.random() * 150.0f));
 
     private WeatherProvider() {}
 

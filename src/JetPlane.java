@@ -8,27 +8,26 @@ public class JetPlane extends Aircraft implements Flyable {
     }
     public void updateConditions() 
     {
-        Logger logger = Logger.get();
         String weather = weatherTower.getWeather(coordinates);
         if (weather.equals("SUN")) //◦ SUN - Latitude increases with 10, Height increases with 2
         {
-            logger.log(toString() + ": Well it's sunny so we can get some height.");
+            Logger.log(toString() + ": Well it's sunny so we can get some height.");
             coordinates.addLatitude(10);
             coordinates.addHeight(2);
         }
         else if (weather.equals("RAIN"))// ◦ RAIN - Latitude increases with 5
         {
-            logger.log(toString() + ": It's raining out here. Changing position.");
+            Logger.log(toString() + ": It's raining out here. Changing position.");
             coordinates.addLatitude(5);
         }
         else if (weather.equals("FOG"))// ◦ FOG - Latitude increases with 1
         {
-            logger.log(toString() + ": Can't see anything, changing position.");
+            Logger.log(toString() + ": Can't see anything, changing position.");
             coordinates.addLatitude(1);
         }
         else if (weather.equals("SNOW"))// ◦ SNOW - Height decreases with 7
         {
-            logger.log(toString() + ": You know nothing.");
+            Logger.log(toString() + ": You know nothing.");
             coordinates.addHeight(-7);
         }
     }

@@ -23,6 +23,6 @@ public class Coordinates {
 
     public int hashCode()
     {
-      return Utils.hash(longitude) + Utils.hash(latitude) + Utils.hash(height);
+        return Utils.hash(longitude) + Utils.hash(latitude) + Utils.hash(height);
     }
 }
